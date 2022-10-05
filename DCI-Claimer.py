@@ -2,7 +2,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import selenium.common.exceptions as seleniumException
-import pickle
+import json
 import sys
 
 ########################## AUXILIARY ###########################
@@ -19,6 +19,10 @@ class Drivers:
 
 def claimReward(driver, cookies):
     driver.get(dci_url)
+    #remove pop-up
+    close_button = "components-home-assets-__sign-guide_---guide-close---2VvmzE"
+    pop_up = driver.find_element(By.CLASS_NAME, close_button)
+    pop_up.click()
 
     # Load cookies
     for cookie in cookies:
@@ -38,7 +42,7 @@ coockies_file = args[2]
 
 # Process Arguments
 driver = Drivers().getDriver(driver_type)
-cookies = pickle.load(open(coockies_file, "rb"))
+cookies = json.load(open(coockies_file, "rb"))
 
 # DAILY CHECK-IN URL:
 dci_url = "https://act.hoyolab.com/ys/event/signin-sea-v3/index.html?act_id=e202102251931481&mhy_auth_required=true&mhy_presentation_style=fullscreen&lang=en-us&bbs_theme=dark&bbs_theme_device=1"
