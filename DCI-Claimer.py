@@ -30,7 +30,7 @@ def claimReward(driver, cookies):
     driver.refresh()
 
     # Click on reward
-    claimable = "components-home-assets-__sign-content_---active---36unD3"
+    claimable = "components-home-assets-__sign-content_---sign-wrapper---38rWqB"
     reward = driver.find_element(By.CLASS_NAME, claimable)
     reward.click()
 
